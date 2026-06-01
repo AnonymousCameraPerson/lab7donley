@@ -19,6 +19,7 @@ private:
 	bool live;
 	int speed;
 	float angle;
+
 	ALLEGRO_BITMAP* image;
 };
 #endif
