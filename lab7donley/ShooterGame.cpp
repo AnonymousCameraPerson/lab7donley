@@ -5,7 +5,7 @@
 #include "BadGuy.h"
 #include "weapon.h"
 
-
+#include <iostream>
 
 
 
@@ -77,18 +77,24 @@ int main(void)
 				for (BadGuy& guy : BadGuys) {
 					int bx = guy.getBoundX();
 					int by = guy.getBoundY();
-					int x = myPlayer.getX();
-					int y = myPlayer.getY();
-					if ((x > (guy.getX() - guy.getBoundX()) &&
-						x < (guy.getX() + guy.getBoundX()) &&
-						y >(guy.getY() - guy.getBoundY()) &&
-						y < guy.getY() + guy.getBoundY()))
-					{
-						move_up = false;
-						guy.setLive(false);
-					}
-					else {
-						move_up = true;
+					int x = myPlayer.getX() + myPlayer.getBoundX();
+					int y = myPlayer.getY() + myPlayer.getBoundY()/2;
+					if (guy.getLive()) {
+						if ((x > (guy.getX() - guy.getBoundX()) &&
+							x < (guy.getX() + guy.getBoundX()) &&
+							y >(guy.getY() - guy.getBoundY()) &&
+							y < guy.getY() + guy.getBoundY()))
+						{
+							move_up = false;
+							std::cout << "Something";
+							guy.setLive(false);
+							//guy.setLive(false);
+
+						}
+						else {
+							//std::cout << "Player X: " << x << " Player Y: " << y;
+							move_up = true;
+						}
 					}
 					
 				}

@@ -10,6 +10,7 @@ public:
 	void Drawweapon();
 	void Fireweapon(player& Player);
 	void Updateweapon(int WIDTH);
+	bool getLive();
 	void Collideweapon(BadGuy BadGuys[], int cSize);
 private:
 	int x;

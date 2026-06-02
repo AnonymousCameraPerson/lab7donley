@@ -20,6 +20,8 @@ player::player()
 	y = 20;
 
 	speed = 7;
+	boundx = 32;
+	boundy = 32;
 	//boundx = al_get_bitmap_width(image);
 	//boundy = al_get_bitmap_height(image);
 
@@ -90,11 +92,13 @@ void player::MoveLeft()
 	if (x < 0)
 		x = 0;
 }
+
 void player::MoveRight(int WIDTH)
 {
 	x += speed;
 	if (x > WIDTH - boundx)
 		x = WIDTH - boundx;
+	
 }
 
 

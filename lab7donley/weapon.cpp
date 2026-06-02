@@ -63,6 +63,12 @@ void weapon::Updateweapon(int WIDTH)
 			live = false;
 	}
 }
+
+bool weapon::getLive() {
+	return live;
+}
+
+
 void weapon::Collideweapon(BadGuy BadGuys[], int cSize)
 {
 	if (live)
