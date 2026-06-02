@@ -46,7 +46,7 @@ int main(void)
 	al_init_image_addon();
 
 	//object variables
-	player myPlayer(HEIGHT);
+	player myPlayer;
 	weapon weapons[NUM_weapons];
 	BadGuy BadGuys[NUM_BadGuyS];
 
@@ -59,7 +59,10 @@ int main(void)
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
 	al_register_event_source(event_queue, al_get_display_event_source(display));
+	myPlayer.create_arrow_bitmap(display);
 	al_set_target_bitmap(al_get_backbuffer(display));
+	//myPlayer.drawArrow();
+	al_flip_display();
 	al_start_timer(timer);
 	while (!done)
 	{
@@ -69,8 +72,30 @@ int main(void)
 		if (ev.type == ALLEGRO_EVENT_TIMER)
 		{
 			redraw = true;
-			if (keys[UP])
-				myPlayer.MoveUp();
+			if (keys[UP]) {
+				bool move_up = false;
+				for (BadGuy& guy : BadGuys) {
+					int bx = guy.getBoundX();
+					int by = guy.getBoundY();
+					int x = myPlayer.getX();
+					int y = myPlayer.getY();
+					if ((x > (guy.getX() - guy.getBoundX()) &&
+						x < (guy.getX() + guy.getBoundX()) &&
+						y >(guy.getY() - guy.getBoundY()) &&
+						y < guy.getY() + guy.getBoundY()))
+					{
+						move_up = false;
+						guy.setLive(false);
+					}
+					else {
+						move_up = true;
+					}
+					
+				}
+				if (move_up) {
+					myPlayer.MoveUp();
+				}
+			}
 			if (keys[DOWN])
 				myPlayer.MoveDown(HEIGHT);
 			if (keys[LEFT])
@@ -149,7 +174,7 @@ int main(void)
 		{
 			redraw = false;
 
-			myPlayer.DrawPlayer(flag);
+			myPlayer.drawArrow();
 			for (int i = 0;i < NUM_weapons;i++)
 				weapons[i].Drawweapon();
 			for (int i = 0;i < NUM_BadGuyS;i++)

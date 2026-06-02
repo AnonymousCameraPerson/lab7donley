@@ -6,9 +6,10 @@
 class player
 {
 public:
-	player(int HEIGHT);
+	//player(int HEIGHT);
+	player();
 	~player();
-	void DrawPlayer(int flag);
+	//void DrawPlayer(int flag);
 	void MoveUp();
 	void MoveDown(int HEIGHT);
 	void MoveLeft();
@@ -17,12 +18,18 @@ public:
 	int getBoundY() { return boundy; }
 	int getX() { return x; }
 	int getY() { return y; }
+	int getDirection();
+	int getSpeed();
+	void drawArrow();
+	void create_arrow_bitmap(ALLEGRO_DISPLAY* display);
+	void move_arrow(int width, int height);
 private:
 	int x;
 	int y;
-	int speed;
+	int speed, dir;
 	int boundx;
 	int boundy;
+	ALLEGRO_BITMAP* arrow_bmp[4];
 	ALLEGRO_BITMAP* image;
 };
 #endif
