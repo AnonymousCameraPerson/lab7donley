@@ -61,7 +61,7 @@ int main(void)
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	myPlayer.create_arrow_bitmap(display);
 	al_set_target_bitmap(al_get_backbuffer(display));
-	//myPlayer.drawArrow();
+	myPlayer.drawArrow();
 	al_flip_display();
 	al_start_timer(timer);
 	while (!done)
@@ -77,8 +77,8 @@ int main(void)
 				for (BadGuy& guy : BadGuys) {
 					int bx = guy.getBoundX();
 					int by = guy.getBoundY();
-					int x = myPlayer.getX() + myPlayer.getBoundX();
-					int y = myPlayer.getY() + myPlayer.getBoundY()/2;
+					int x = myPlayer.getX();
+					int y = myPlayer.getY();
 					if (guy.getLive()) {
 						if ((x > (guy.getX() - guy.getBoundX()) &&
 							x < (guy.getX() + guy.getBoundX()) &&

@@ -79,18 +79,21 @@ void player::MoveUp()
 	y -= speed;
 	if (y < 0)
 		y = 0;
+	dir = 0;
 }
 void player::MoveDown(int HEIGHT)
 {
 	y += speed;
 	if (y > HEIGHT - boundy)
 		y = HEIGHT - boundy;
+	dir = 2;
 }
 void player::MoveLeft()
 {
 	x -= speed;
 	if (x < 0)
 		x = 0;
+	dir = 3;
 }
 
 void player::MoveRight(int WIDTH)
@@ -98,7 +101,8 @@ void player::MoveRight(int WIDTH)
 	x += speed;
 	if (x > WIDTH - boundx)
 		x = WIDTH - boundx;
-	
+
+	dir = 1;
 }
 
 
@@ -123,21 +127,26 @@ void player::create_arrow_bitmap(ALLEGRO_DISPLAY* display)
 
 		int x = 15;
 		int y = 15;
-		al_draw_filled_rectangle(x - 10, y - 10, x + 10, y + 10, al_map_rgb(255, 255, 255));
+
+		//base image for bitmap
+		al_draw_circle(x - 1, y - 1, 15, al_map_rgb(0, 255, 255), 2);
+		al_draw_filled_circle(x - 2, y - 2, 10, al_map_rgb(255, 255, 255));
+		al_draw_filled_circle(x, y, 10, al_map_rgb(60, 105, 215));
 
 		switch (i)
 		{
-		case 0: //Up
-			al_draw_filled_triangle(x - 10, y - 10, x + 11, y - 10, x, y - 15, al_map_rgb(255, 0, 0));
+		case 0: //Up		
+			al_draw_pieslice(x, y - 10, 10, 0, 360, al_map_rgb(255, 0, 0), 2);
 			break;
-		case 1://Right
-			al_draw_filled_triangle(x + 11, y - 11, x + 11, y + 11, x + 15, y, al_map_rgb(255, 0, 0));
+		case 1://Right		
+			al_draw_pieslice(x + 10, y, 10, 0, 360, al_map_rgb(255, 0, 0), 2);
 			break;
 		case 2://Down
-			al_draw_filled_triangle(x - 11, y + 11, x + 11, y + 11, x, y + 15, al_map_rgb(255, 0, 0));
+
+			al_draw_pieslice(x, y + 10, 10, 0, 360, al_map_rgb(255, 0, 0), 2);
 			break;
 		case 3: //Left
-			al_draw_filled_triangle(x - 11, y - 11, x - 11, y + 11, x - 15, y, al_map_rgb(255, 0, 0));
+			al_draw_pieslice(x - 11, y, 10, 0, 360, al_map_rgb(255, 0, 0), 2);
 			break;
 		}
 	}

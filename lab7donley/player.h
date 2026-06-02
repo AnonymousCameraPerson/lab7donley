@@ -31,6 +31,7 @@ private:
 	int boundy;
 	ALLEGRO_BITMAP* arrow_bmp[4];
 	ALLEGRO_BITMAP* image;
+	
 };
 #endif
 
