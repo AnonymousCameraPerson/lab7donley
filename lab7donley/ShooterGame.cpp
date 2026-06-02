@@ -86,8 +86,7 @@ int main(void)
 							y < guy.getY() + guy.getBoundY()))
 						{
 							move_up = false;
-							std::cout << "Something";
-							guy.setLive(false);
+							//std::cout << "Something";
 							//guy.setLive(false);
 
 						}
@@ -96,13 +95,16 @@ int main(void)
 							move_up = true;
 						}
 					}
-					
 				}
 				if (move_up) {
 					myPlayer.MoveUp();
 				}
+				else {
+					myPlayer.MoveDown(HEIGHT);
+				}
 			}
 			if (keys[DOWN])
+
 				myPlayer.MoveDown(HEIGHT);
 			if (keys[LEFT])
 				myPlayer.MoveLeft();
@@ -110,7 +112,7 @@ int main(void)
 				myPlayer.MoveRight(WIDTH);
 
 			for (int i = 0;i < NUM_weapons;i++)
-				weapons[i].Updateweapon(WIDTH);
+				weapons[i].Updateweapon(WIDTH, HEIGHT, myPlayer);
 			for (int i = 0;i < NUM_BadGuyS;i++)
 				BadGuys[i].StartBadGuy(WIDTH, HEIGHT);
 			for (int i = 0;i < NUM_weapons;i++)

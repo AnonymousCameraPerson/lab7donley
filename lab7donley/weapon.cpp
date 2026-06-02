@@ -49,18 +49,42 @@ void weapon::Fireweapon(player& Player)
 {
 	if (!live)
 	{
-		x = Player.getX() + Player.getBoundX();
-		y = Player.getY() + Player.getBoundY() / 2;
+		if (Player.getDirection() == 0 or Player.getDirection() == 2) {
+			x = Player.getX() + Player.getBoundX() / 2;
+			y = Player.getY() + Player.getBoundY()/2;
+		}
+		else {
+			x = Player.getX() + Player.getBoundX();
+			y = Player.getY() + Player.getBoundY() / 2;
+		}
 		live = true;
 	}
 }
-void weapon::Updateweapon(int WIDTH)
+void weapon::Updateweapon(int WIDTH, int HEIGHT, player& Player)
 {
 	if (live)
 	{
-		x += speed;
-		if (x > WIDTH)
-			live = false;
+		if (Player.getDirection() == 0) {
+			y -= speed;
+			if (y < 0) {
+				live = false;
+			}
+		}
+		else if (Player.getDirection() == 1) {
+			x += speed;
+			if (x > WIDTH)
+				live = false;
+		}
+		else if (Player.getDirection() == 2) {
+			y += speed;
+			if (y > HEIGHT)
+				live = false;
+		}
+		else if (Player.getDirection() == 3) {
+			x -= speed;
+			if (x < 0)
+				live = false;
+		}
 	}
 }
 

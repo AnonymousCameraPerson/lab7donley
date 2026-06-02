@@ -2,6 +2,7 @@
 #define BADGUYH
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_primitives.h>
+#include <array>
 
 class BadGuy
 {
@@ -23,7 +24,7 @@ private:
 	int speed;
 	int boundx;
 	int boundy;
-
+	int boundings[5][5];
 	ALLEGRO_BITMAP* image;
 };
 
