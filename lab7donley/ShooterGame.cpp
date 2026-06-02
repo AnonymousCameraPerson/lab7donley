@@ -17,6 +17,7 @@ int main(void)
 	const int HEIGHT = 400;
 	const int NUM_weapons = 5;
 	const int NUM_BadGuyS = 5;
+	int flag = 0;
 	enum KEYS { UP, DOWN, LEFT, RIGHT, SPACE };
 	bool keys[5] = { false, false, false, false, false };
 
@@ -98,15 +99,19 @@ int main(void)
 				break;
 			case ALLEGRO_KEY_UP:
 				keys[UP] = true;
+				flag = 0;
 				break;
 			case ALLEGRO_KEY_DOWN:
 				keys[DOWN] = true;
+				flag = ALLEGRO_FLIP_VERTICAL;
 				break;
 			case ALLEGRO_KEY_LEFT:
+				flag = 3;
 				keys[LEFT] = true;
 				break;
 			case ALLEGRO_KEY_RIGHT:
 				keys[RIGHT] = true;
+				flag = 4;
 				break;
 			case ALLEGRO_KEY_SPACE:
 				keys[SPACE] = true;
@@ -144,7 +149,7 @@ int main(void)
 		{
 			redraw = false;
 
-			myPlayer.DrawPlayer();
+			myPlayer.DrawPlayer(flag);
 			for (int i = 0;i < NUM_weapons;i++)
 				weapons[i].Drawweapon();
 			for (int i = 0;i < NUM_BadGuyS;i++)
