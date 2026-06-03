@@ -73,41 +73,85 @@ int main(void)
 		{
 			redraw = true;
 			if (keys[UP]) {
-				bool move_up = false;
+				bool move_up = true;
 				for (BadGuy& guy : BadGuys) {
 					int bx = guy.getBoundX();
 					int by = guy.getBoundY();
-					int x = myPlayer.getX();
-					int y = myPlayer.getY();
+					int x = myPlayer.getX() - 16;
+					int y = myPlayer.getY()-myPlayer.getBoundY()/2;
 					if (guy.getLive()) {
 						if ((x > (guy.getX() - guy.getBoundX()) &&
 							x < (guy.getX() + guy.getBoundX()) &&
 							y >(guy.getY() - guy.getBoundY()) &&
-							y < guy.getY() + guy.getBoundY()))
+							y < guy.getY() + guy.getBoundY()+5))
 						{
 							move_up = false;
 							//std::cout << "Something";
 							//guy.setLive(false);
 
 						}
-						else {
-							//std::cout << "Player X: " << x << " Player Y: " << y;
-							move_up = true;
-						}
 					}
 				}
 				if (move_up) {
 					myPlayer.MoveUp();
 				}
-				else {
+			}
+			if (keys[DOWN]) {
+				bool move_up = true;
+				for (BadGuy& guy : BadGuys) {
+					int bx = guy.getBoundX();
+					int by = guy.getBoundY();
+					int x = myPlayer.getX() - 16;
+					int y = myPlayer.getY()-myPlayer.getBoundY() / 2 + 5;
+					if (guy.getLive()) {
+						if ((x > (guy.getX() - guy.getBoundX()) &&
+							x < (guy.getX() + guy.getBoundX()) &&
+							y >(guy.getY() - guy.getBoundY()) &&
+							y < guy.getY() + guy.getBoundY()))
+						{
+							
+							move_up = false;
+							//std::cout << "Something";
+							//guy.setLive(false);
+
+						}
+					}
+				}
+				if (move_up) {
 					myPlayer.MoveDown(HEIGHT);
 				}
+				//myPlayer.MoveDown(HEIGHT);
 			}
-			if (keys[DOWN])
+				//myPlayer.MoveDown(HEIGHT);
+			if (keys[LEFT]) {
+				bool move_up = true;
+				for (BadGuy& guy : BadGuys) {
+					int bx = guy.getBoundX();
+					int by = guy.getBoundY();
+					int x = myPlayer.getX()-myPlayer.getBoundX();
+					int y = myPlayer.getY()-myPlayer.getBoundY()/2;
+					if (guy.getLive()) {
+						if ((x > (guy.getX() - guy.getBoundX()) &&
+							x < (guy.getX() + guy.getBoundX()) &&
+							y >(guy.getY() - guy.getBoundY()+5) &&
+							y < guy.getY() + guy.getBoundY()-5))
+						{
 
-				myPlayer.MoveDown(HEIGHT);
-			if (keys[LEFT])
-				myPlayer.MoveLeft();
+							move_up = false;
+							//std::cout << "Something";
+							//guy.setLive(false);
+
+						}
+					}
+				}
+				if (move_up) {
+					myPlayer.MoveLeft();
+				}
+				//myPlayer.MoveDown(HEIGHT);
+			}
+			//myPlaye
+
+				//myPlayer.MoveLeft();
 			if (keys[RIGHT])
 				myPlayer.MoveRight(WIDTH);
 

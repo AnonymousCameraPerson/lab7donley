@@ -21,8 +21,8 @@ BadGuy::BadGuy()
 	al_draw_filled_circle(32, 32, 4, al_map_rgb(255, 255, 255));
 	al_draw_filled_circle(16, 32, 4, al_map_rgb(120, 255, 255));
 	al_draw_filled_circle(48, 32, 4, al_map_rgb(255, 255, 120));
-	boundx = al_get_bitmap_width(image) * .75;
-	boundy = al_get_bitmap_height(image) * .75;
+	boundx = al_get_bitmap_width(image)*.8;
+	boundy = al_get_bitmap_height(image)*.8;
 	live = false;
 
 }
@@ -41,17 +41,28 @@ void BadGuy::StartBadGuy(int WIDTH, int HEIGHT)
 
 	if (!live)
 	{
-		if (rand() % 500 == 0)
+		if (rand() % 500 == 0 )
 		{
 			live = true;
 			do {
 				x = rand() % (WIDTH - boundx);
+				//boundings[x][x] = x;
 			} while (x < 100);
 			do {
 				y = rand() % (HEIGHT - boundy);
+				//boundings[y][y] = y;
 			} while (y < 100);
 
 		}
+		/*for (int i = 0; i < std::size(boundings); i++) {
+			if (x == boundings[i][i] && y==boundings[i][i]) {
+				x = rand() % (WIDTH - boundx);
+				i = 0;
+			}
+			else {
+				continue;
+			}
+		}*/
 	}
 }
 
