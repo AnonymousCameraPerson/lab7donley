@@ -10,12 +10,12 @@ public:
 	BadGuy();
 	~BadGuy();
 	void DrawBadGuy();
-	void StartBadGuy(int WIDTH, int HEIGHT);
+	void StartBadGuy(int WIDTH, int HEIGHT, const BadGuy BadGuys[], int NUM_BadGuyS);
 	int getBoundX() { return boundx; }
 	int getBoundY() { return boundy; }
-	int getX() { return x; }
-	int getY() { return y; }
-	bool getLive() { return live; }
+	int getX() const { return x; }
+	int getY() const { return y; }
+	bool getLive() const { return live; }
 	void setLive(bool l) { live = l; }
 private:
 	int x;
@@ -24,7 +24,7 @@ private:
 	int speed;
 	int boundx;
 	int boundy;
-	int boundings[5][5];
+	int NUM;
 	ALLEGRO_BITMAP* image;
 };
 

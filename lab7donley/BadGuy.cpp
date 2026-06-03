@@ -36,7 +36,7 @@ void BadGuy::DrawBadGuy()
 	}
 
 }
-void BadGuy::StartBadGuy(int WIDTH, int HEIGHT)
+void BadGuy::StartBadGuy(int WIDTH, int HEIGHT, const BadGuy BadGuys[], int NUM_BadGuyS)
 {
 
 	if (!live)
@@ -52,6 +52,26 @@ void BadGuy::StartBadGuy(int WIDTH, int HEIGHT)
 				y = rand() % (HEIGHT - boundy);
 				//boundings[y][y] = y;
 			} while (y < 100);
+
+		}
+		for (int i = 0; i < NUM_BadGuyS; ++i) {
+			int bx;
+			int by;
+			if (BadGuys[i].getLive()) {
+				bx = BadGuys[i].getX()+10;
+				by = BadGuys[i].getY()+10;
+				if ((x > (bx - boundx) &&
+					x < (bx + boundx) &&
+					y >(by - boundy) &&
+					y < by + boundy))
+				{
+					x = rand() % (WIDTH - boundx);
+					y = rand() % (HEIGHT - boundy);
+				}
+				else {
+					continue;
+				}
+			}
 
 		}
 		/*for (int i = 0; i < std::size(boundings); i++) {
