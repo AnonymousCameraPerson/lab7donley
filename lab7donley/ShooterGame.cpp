@@ -152,8 +152,33 @@ int main(void)
 			//myPlaye
 
 				//myPlayer.MoveLeft();
-			if (keys[RIGHT])
-				myPlayer.MoveRight(WIDTH);
+			if (keys[RIGHT]) {
+				bool move_up = true;
+				for (BadGuy& guy : BadGuys) {
+					int bx = guy.getBoundX();
+					int by = guy.getBoundY();
+					int x = myPlayer.getX();
+					int y = myPlayer.getY() - myPlayer.getBoundY() / 2;
+					if (guy.getLive()) {
+						if ((x > (guy.getX() - guy.getBoundX()) &&
+							x < (guy.getX() + guy.getBoundX()) &&
+							y >(guy.getY() - guy.getBoundY()+5) &&
+							y < guy.getY() + guy.getBoundY()))
+						{
+
+							move_up = false;
+							//std::cout << "Something";
+							//guy.setLive(false);
+
+						}
+					}
+				}
+				if (move_up) {
+					myPlayer.MoveRight(WIDTH);
+				}
+				//myPlayer.MoveDown(HEIGHT);
+			}
+				//myPlayer.MoveRight(WIDTH);
 
 			for (int i = 0;i < NUM_weapons;i++)
 				weapons[i].Updateweapon(WIDTH, HEIGHT, myPlayer);
