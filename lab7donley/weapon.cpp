@@ -49,7 +49,9 @@ void weapon::Fireweapon(player& Player)
 {
 	if (!live)
 	{
-		if (Player.getDirection() == 0 or Player.getDirection() == 2) {
+		direction = Player.getDirection();
+
+		if (direction == 0 or direction == 2) {
 			x = Player.getX() + Player.getBoundX() / 2;
 			y = Player.getY() + Player.getBoundY()/2;
 		}
@@ -64,23 +66,23 @@ void weapon::Updateweapon(int WIDTH, int HEIGHT, player& Player)
 {
 	if (live)
 	{
-		if (Player.getDirection() == 0) {
+		if (direction == 0) {
 			y -= speed;
 			if (y < 0) {
 				live = false;
 			}
 		}
-		else if (Player.getDirection() == 1) {
+		else if (direction == 1) {
 			x += speed;
 			if (x > WIDTH)
 				live = false;
 		}
-		else if (Player.getDirection() == 2) {
+		else if (direction == 2) {
 			y += speed;
 			if (y > HEIGHT)
 				live = false;
 		}
-		else if (Player.getDirection() == 3) {
+		else if (direction == 3) {
 			x -= speed;
 			if (x < 0)
 				live = false;

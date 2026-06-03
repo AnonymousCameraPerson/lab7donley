@@ -19,6 +19,7 @@ private:
 	int boundy;
 	bool live;
 	int speed;
+	int direction;
 	float angle;
 
 	ALLEGRO_BITMAP* image;
